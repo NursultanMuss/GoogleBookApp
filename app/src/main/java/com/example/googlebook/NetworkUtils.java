@@ -160,12 +160,14 @@ public class NetworkUtils {
                 String description = volumeInfo.getString("description");
                 String imgLink = volumeInfo.getString("imgLink");
                 int pageCount = volumeInfo.getInt("pageCount");
-                int avrRating = volumeInfo.getInt("avrRating");
+                float avrRating = (float) volumeInfo.getDouble("averageRating");
+                int ratingCount = volumeInfo.getInt("ratingsCount");
+
 
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
-                Book book = new Book(title, subTitle, author, description, imgLink, pageCount, avrRating);
+                Book book = new Book(title, subTitle, author, description, imgLink, pageCount, avrRating, ratingCount);
 
                 // Add the new {@link Earthquake} to the list of earthquakes.
                 books.add(book);

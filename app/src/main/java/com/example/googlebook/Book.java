@@ -7,9 +7,10 @@ public class Book {
     private String description;
     private String imgLink;
     private int pageCount;
-    private int avrRating;
+    private float avrRating;
+    private int ratingCount;
 
-    public Book(String title, String subTitle, String author, String description, String imgLink, int pageCount, int avrRating) {
+    public Book(String title, String subTitle, String author, String description, String imgLink, int pageCount, float avrRating, int ratingCount) {
         this.title = title;
         this.subTitle = subTitle;
         this.author = author;
@@ -17,6 +18,15 @@ public class Book {
         this.imgLink = imgLink;
         this.pageCount = pageCount;
         this.avrRating = avrRating;
+        this.ratingCount = ratingCount;
+    }
+
+    public int getRatingCount() {
+        return ratingCount;
+    }
+
+    public void setRatingCount(int ratingCount) {
+        this.ratingCount = ratingCount;
     }
 
     public String getTitle() {
@@ -59,7 +69,7 @@ public class Book {
         this.pageCount = pageCount;
     }
 
-    public int getAvrRating() {
+    public float getAvrRating() {
         return avrRating;
     }
 

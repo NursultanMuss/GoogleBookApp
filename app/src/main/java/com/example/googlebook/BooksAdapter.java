@@ -1,10 +1,18 @@
 package com.example.googlebook;
 
+import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.util.List;
 
 
 /**
@@ -12,26 +20,62 @@ import android.view.ViewGroup;
  */
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> {
+    List<Book> a_books;
+    public BooksAdapter(List<Book> books){
+        a_books = books;
+    }
+
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-        return null;
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Context context = parent.getContext();
+        LayoutInflater inflater = LayoutInflater.from(context);
+
+        View bookView = inflater.inflate(R.layout.item_book,parent,false);
+        ViewHolder viewHolder = new ViewHolder(bookView);
+        return viewHolder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
+        Book book = a_books.get(position);
+
+        ImageView imageView = viewHolder.bookImageView;
+        Picasso.get().load(book.getImgLink()).into(imageView);
+
+        RatingBar ratingBar = viewHolder.ratingBar;
+        ratingBar.setRating(book.getAvrRating());
+
+        TextView ratingCount = viewHolder.ratingCount;
+        ratingCount.setText(book.getRatingCount());
+
+        TextView author = viewHolder.author;
+        author.setText(book.getAuthor());
+
+        TextView bookName = viewHolder.bookName;
+        bookName.setText(book.getTitle());
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return a_books.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
 
+    public class ViewHolder extends RecyclerView.ViewHolder{
+        public ImageView bookImageView;
+        public RatingBar ratingBar;
+        public TextView ratingCount;
+        public TextView author;
+        public TextView bookName;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            bookImageView = (ImageView) itemView.findViewById(R.id.bookImageView);
+            ratingBar = (RatingBar) itemView.findViewById(R.id.ratingBar);
+            ratingCount = (TextView) itemView.findViewById(R.id.ratingCount);
+            author = (TextView) itemView.findViewById(R.id.author);
+            bookName = (TextView) itemView.findViewById(R.id.bookName);
         }
     }
 }

@@ -18,7 +18,11 @@ public class BooksLoader extends AsyncTaskLoader<List<Book>> {
     @Nullable
     @Override
     public ArrayList<Book> loadInBackground() {
-
         return NetworkUtils.fetchBooksData(mUrl);
+    }
+
+    @Override
+    protected void onStartLoading() {
+        forceLoad();
     }
 }

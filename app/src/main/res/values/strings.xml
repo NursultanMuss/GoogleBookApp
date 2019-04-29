@@ -2,4 +2,8 @@
     <string name="app_name">GoogleBook</string>
     <string name="auto_fill">Введите название книги</string>
     <string name="search_button">Поиск</string>
+    <string name="ratingCount">54</string>
+    <string name="author">Захар Прилепин</string>
+    <string name="bookName">Некоторые не попадут в Ад</string>
+
 </resources>
