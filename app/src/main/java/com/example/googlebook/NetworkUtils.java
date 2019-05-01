@@ -138,7 +138,11 @@ public class NetworkUtils {
 
             // Extract the JSONArray associated with the key called "features",
             // which represents a list of features (or earthquakes).
+            if(baseJsonResponse.getJSONArray("items") == null){
+                baseJsonResponse = null;
+            }
             JSONArray bookArray = baseJsonResponse.getJSONArray("items");
+
 
             // For each earthquake in the earthquakeArray, create an {@link Earthquake} object
             for (int i = 0; i < bookArray.length(); i++) {
@@ -155,10 +159,18 @@ public class NetworkUtils {
                 String title = volumeInfo.getString("title");
 
                 // Extract the value for the key called "place"
-                String subTitle = volumeInfo.getString("subTitle");
-                String author = volumeInfo.getString("author");
+
                 String description = volumeInfo.getString("description");
-                String imgLink = volumeInfo.getString("imgLink");
+                String author="" ;
+                if(volumeInfo.getJSONArray("authors") == null){
+                    author= null;
+                }
+                for(int j=0; j<volumeInfo.getJSONArray("authors").length(); j++){
+                    author= volumeInfo.getJSONArray("authors").getString(j) +", " + author  ;
+                }
+                String imgLink = volumeInfo.getJSONObject("imageLinks").getString("thumbnail");
+
+
                 int pageCount = volumeInfo.getInt("pageCount");
                 float avrRating = (float) volumeInfo.getDouble("averageRating");
                 int ratingCount = volumeInfo.getInt("ratingsCount");
@@ -167,7 +179,7 @@ public class NetworkUtils {
 
                 // Create a new {@link Earthquake} object with the magnitude, location, time,
                 // and url from the JSON response.
-                Book book = new Book(title, subTitle, author, description, imgLink, pageCount, avrRating, ratingCount);
+                Book book = new Book(title, author, description, imgLink, pageCount, avrRating, ratingCount);
 
                 // Add the new {@link Earthquake} to the list of earthquakes.
                 books.add(book);
@@ -177,7 +189,7 @@ public class NetworkUtils {
             // If an error is thrown when executing any of the above statements in the "try" block,
             // catch the exception here, so the app doesn't crash. Print a log message
             // with the message from the exception.
-            Log.e("QueryUtils", "Problem parsing the earthquake JSON results", e);
+            Log.e("QueryUtils", "Problem parsing the book JSON results", e);
         }
 
         return books;

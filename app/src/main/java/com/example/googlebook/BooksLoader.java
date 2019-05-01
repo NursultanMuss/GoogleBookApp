@@ -8,7 +8,7 @@ import android.support.v4.content.AsyncTaskLoader;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BooksLoader extends AsyncTaskLoader<List<Book>> {
+public class BooksLoader extends AsyncTaskLoader<ArrayList<Book>> {
     String mUrl;
     public BooksLoader(@NonNull Context context, String url) {
         super(context);

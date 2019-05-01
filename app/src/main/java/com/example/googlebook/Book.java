@@ -2,7 +2,6 @@ package com.example.googlebook;
 
 public class Book {
     private String title;
-    private String subTitle;
     private String author;
     private String description;
     private String imgLink;
@@ -10,9 +9,8 @@ public class Book {
     private float avrRating;
     private int ratingCount;
 
-    public Book(String title, String subTitle, String author, String description, String imgLink, int pageCount, float avrRating, int ratingCount) {
+    public Book(String title, String author, String description, String imgLink, int pageCount, float avrRating, int ratingCount) {
         this.title = title;
-        this.subTitle = subTitle;
         this.author = author;
         this.description = description;
         this.imgLink = imgLink;
@@ -37,13 +35,6 @@ public class Book {
         this.title = title;
     }
 
-    public String getSubTitle() {
-        return subTitle;
-    }
-
-    public void setSubTitle(String subTitle) {
-        this.subTitle = subTitle;
-    }
 
     public String getAuthor() {
         return author;

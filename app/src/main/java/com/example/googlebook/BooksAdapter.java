@@ -3,6 +3,7 @@ package com.example.googlebook;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -20,8 +22,8 @@ import java.util.List;
  */
 
 public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> {
-    List<Book> a_books;
-    public BooksAdapter(List<Book> books){
+    ArrayList<Book> a_books;
+    public BooksAdapter(ArrayList<Book> books){
         a_books = books;
     }
 
@@ -47,7 +49,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
         ratingBar.setRating(book.getAvrRating());
 
         TextView ratingCount = viewHolder.ratingCount;
-        ratingCount.setText(book.getRatingCount());
+        ratingCount.setText(String.valueOf(book.getRatingCount()));
 
         TextView author = viewHolder.author;
         author.setText(book.getAuthor());
@@ -59,6 +61,7 @@ public class BooksAdapter extends RecyclerView.Adapter<BooksAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
+        Log.d("Log", Integer.toString(a_books.size()));
         return a_books.size();
     }
 
